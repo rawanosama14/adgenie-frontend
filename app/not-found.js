@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function NotFound(){return <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 dark:bg-[#0f1115]"><div className="card max-w-md text-center"><img src="/logo.png" className="mx-auto h-24 w-24 object-contain" alt="AdGenie"/><h1 className="mt-5 text-3xl font-black text-slate-900 dark:text-white">404</h1><p className="mt-2 text-slate-500 dark:text-slate-400">Page not found</p><Link href="/" className="btn-primary mt-6">Back home</Link></div></div>}
