@@ -1,32 +1,54 @@
-# AdGenie Frontend — Campaign Studio V2
+# AdGenie Frontend — Next.js App Router
 
-Next.js App Router frontend.
+This is the production frontend for AdGenie. The old Vite/React-Router tree has been removed so Next.js has a single routing system and can build cleanly for production.
 
-## Campaign Studio
+## Main routes
 
-`/dashboard/generator` is now a step-by-step campaign wizard instead of one long form:
+- `/` landing page
+- `/login` and `/register`
+- `/dashboard`
+- `/dashboard/projects`
+- `/dashboard/generator`
+- `/dashboard/drafts`
+- `/dashboard/calendar`
+- `/dashboard/ads`
+- `/dashboard/integrations`
+- `/dashboard/billing`
+- `/hq` and `/hq/login`
 
-1. Choose the saved Brand Brain/project.
-2. Define the campaign goal.
-3. Select the objective.
-4. Add the offer/core message.
-5. Set CTA + Facebook/Instagram channels.
-6. Add creative direction/constraints and language.
+## Environment variables
 
-The wizard uses a floating 3D planet assistant. During generation the planet switches into an animated generation state with orbital rings, scanning waves, moving texture/noise and live pipeline phases. Results are presented as three professional creative-route cards. Selecting a route opens a dedicated final Ad Editor where the user can edit and save the copy or regenerate that route's image.
+For local development create `.env.local` (or use the included local `.env`):
 
-## Local setup
+```env
+NEXT_PUBLIC_API_URL=/api
+BACKEND_URL=http://localhost:8000
+```
+
+For production keep `NEXT_PUBLIC_API_URL=/api` and set `BACKEND_URL` to the public backend URL, for example:
+
+```env
+NEXT_PUBLIC_API_URL=/api
+BACKEND_URL=https://your-adgenie-backend.onrender.com
+```
+
+`/api/*` is proxied at runtime to `BACKEND_URL/api/v1/*` and `/media/*` is proxied to `BACKEND_URL/media/*`. This avoids hard-coding the backend during `next build` and keeps the browser on the frontend origin.
+
+## Local commands
 
 ```powershell
-cd frontend
 npm install
 npm run dev
 ```
 
-Create `.env.local` if the backend is not on the default URL:
+Production check:
 
-```env
-BACKEND_URL=http://localhost:8000
+```powershell
+Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue
+npm run build
+npm run start
 ```
 
-The included `next.config.js` proxies `/api/*` to FastAPI `/api/v1/*` and `/media/*` to generated backend media.
+## Docker / Render
+
+The Docker image now binds to `0.0.0.0` and uses Render's `PORT` automatically. Set `BACKEND_URL` in the frontend service Environment settings; it is read at runtime.

@@ -8,16 +8,16 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Toast, { ToastProvider, useToast } from './components/Toast';
 
-import Landing from './pages/Landing';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Generator from './pages/Generator';
-import Drafts from './pages/Drafts';
-import CalendarPage from './pages/CalendarPage';
-import Pricing from './pages/Pricing';
-import PaymentCallback from './pages/PaymentCallback';
-import NotFound from './pages/NotFound';
+import Landing from './legacy-pages/Landing';
+import Login from './legacy-pages/Login';
+import Register from './legacy-pages/Register';
+import Dashboard from './legacy-pages/Dashboard';
+import Generator from './legacy-pages/Generator';
+import Drafts from './legacy-pages/Drafts';
+import CalendarPage from './legacy-pages/CalendarPage';
+import Pricing from './legacy-pages/Pricing';
+import PaymentCallback from './legacy-pages/PaymentCallback';
+import NotFound from './legacy-pages/NotFound';
 
 import DashboardLayout from './components/DashboardLayout';
 
