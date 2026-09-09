@@ -1,0 +1,24 @@
+AdGenie frontend — Render production settings
+
+Environment Variables on the FRONTEND service:
+NEXT_PUBLIC_API_URL=/api
+BACKEND_URL=https://YOUR-BACKEND.onrender.com
+PORT=10000
+
+BACKEND_URL must be the backend origin only. Do NOT append /api or /api/v1.
+
+This build uses Next.js rewrites instead of app/api route handlers:
+/api/auth/token -> BACKEND_URL/api/v1/auth/token
+/api/health     -> BACKEND_URL/api/v1/health
+/media/...      -> BACKEND_URL/media/...
+
+IMPORTANT FOR RENDER + DOCKER:
+The Dockerfile declares ARG BACKEND_URL and ARG NEXT_PUBLIC_API_URL before
+`npm run build`, because Render exposes service env vars to Docker builds as
+build arguments. Always choose "Save, rebuild, and deploy" after changing
+BACKEND_URL or NEXT_PUBLIC_API_URL.
+
+Quick tests after deploy:
+1) Open: https://YOUR-FRONTEND.onrender.com/api/health
+   Expected: JSON with status/database (HTTP 200, or 503 if Mongo is unavailable).
+2) Login uses POST /api/auth/token and should no longer return a routing 404.

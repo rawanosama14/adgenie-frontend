@@ -1,0 +1,19 @@
+AdGenie Frontend - CLEAN Next.js App Router build
+
+IMPORTANT:
+1) DO NOT extract/copy this project on top of the old frontend folder.
+2) Delete or rename the old frontend folder first.
+3) This clean version intentionally has NO src/App.js and NO src/pages folder.
+4) Open PowerShell in this folder and run:
+   npm install
+   npm run build
+
+Local .env defaults:
+NEXT_PUBLIC_API_URL=/api
+BACKEND_URL=http://localhost:8000
+
+Production:
+NEXT_PUBLIC_API_URL=/api
+BACKEND_URL=https://YOUR-BACKEND-DOMAIN
+
+Do not append /api/v1 to BACKEND_URL.
